@@ -1,0 +1,65 @@
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 1000px) {
+  .summary-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.summary-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.summary-card.status-card {
+  padding: 1.25rem;
+}
+
+.summary-card.status-card.no-leak {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: var(--no-leak);
+}
+
+.summary-card.status-card.leak {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: var(--leak);
+}
+
+.card-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.summary-card.status-card .card-value {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.summary-card.status-card.no-leak .card-value {
+  color: var(--no-leak);
+}
+
+.summary-card.status-card.leak .card-value {
+  color: var(--leak);
+}
+
+.card-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}

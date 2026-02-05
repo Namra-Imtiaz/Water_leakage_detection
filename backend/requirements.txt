@@ -1,0 +1,8 @@
+# Water Leakage Detection - Flask Backend
+# Python 3.8+ recommended
+
+Flask==3.0.0
+flask-cors==4.0.0
+requests==2.31.0
+
+# SQLite is built into Python - no extra package needed (sqlite3 module)
