@@ -5,4 +5,9 @@ Flask==3.0.0
 flask-cors==4.0.0
 requests==2.31.0
 
+# ML inference
+tensorflow>=2.13.0
+librosa>=0.10.0
+opencv-python-headless>=4.8.0
+
 # SQLite is built into Python - no extra package needed (sqlite3 module)
