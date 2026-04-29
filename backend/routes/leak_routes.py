@@ -12,12 +12,11 @@ from ml_model.predictor import predict_from_raw_adc
 
 leak_bp = Blueprint("leak", __name__, url_prefix="/api")
 
-
+# PURPOSE: Accepts raw ADC samples from ESP32 (or any client), runs the
+#          teacher_best.keras model on the backend, st
 # ---------------------------------------------------------------------------
 # POST /api/predict
-# ---------------------------------------------------------------------------
-# PURPOSE: Accepts raw ADC samples from ESP32 (or any client), runs the
-#          teacher_best.keras model on the backend, stores the result, and
+# ------------------------------------------ores the result, and
 #          returns the prediction.
 #
 # REQUEST JSON:
