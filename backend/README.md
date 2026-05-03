@@ -2,7 +2,7 @@
 title: Water Leakage Detection API
 emoji: 💧
 colorFrom: blue
-colorTo: cyan
+colorTo: blue
 sdk: docker
 pinned: false
 ---

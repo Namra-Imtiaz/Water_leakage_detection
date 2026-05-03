@@ -22,8 +22,9 @@ CORS(app, origins=[
     "http://localhost:3000",
     "http://127.0.0.1:5173",
     "http://127.0.0.1:3000",
-    "https://*.vercel.app",        # all Vercel preview URLs
-    # "https://your-app.vercel.app",  # ← add your exact Vercel URL here
+    "https://leaksense.vercel.app",                          # production
+    "https://leaksense-git-main-namra-imtiazs-projects.vercel.app",  # git branch preview
+    "https://leaksense-mbzp9fz3i-namra-imtiazs-projects.vercel.app", # deployment preview
 ])
 
 # Register API blueprint
