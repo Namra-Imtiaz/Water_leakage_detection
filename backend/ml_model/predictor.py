@@ -27,8 +27,8 @@ TARGET_SIZE = (64, 64)            # teacher input spatial size
 # ── Threshold ──────────────────────────────────────────────────────────────
 # Optimal threshold found via find_optimal_threshold() on the validation set
 # (maximises balanced accuracy). Source: STEP 8 training output.
-# "Optimal threshold: 0.49  (val Balanced Acc=0.7117)"
-THRESHOLD   = 0.49
+# "Optimal threshold: 0.65  (val Balanced Acc=0.7117)"
+THRESHOLD   = 0.65
 
 MODEL_PATH  = os.path.join(os.path.dirname(__file__), "teacher_best.keras")
 
