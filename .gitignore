@@ -4,6 +4,7 @@ backend/__pycache__/
 backend/**/__pycache__/
 backend/*.pyc
 backend/database.db
+# NOTE: backend/ml_model/*.keras must NOT be ignored — needed for HF Spaces deployment
 
 # Frontend
 frontend/node_modules/
