@@ -3,7 +3,7 @@
  * All endpoints hit Flask at /api/* (use Vite proxy or full URL).
  */
 
-const BASE = import.meta.env.VITE_API_URL || '/api';
+const BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '') + '/api';
 
 async function request(path, options = {}) {
   const url = path.startsWith('http') ? path : `${BASE}${path}`;
