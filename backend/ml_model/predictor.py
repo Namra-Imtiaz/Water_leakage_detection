@@ -84,7 +84,8 @@ def _load_signal_from_csv(path: str) -> np.ndarray:
     data = np.loadtxt(path, delimiter=",", skiprows=1)
     adc  = data[:, 1].astype(np.float32)
     adc  = np.nan_to_num(adc)
-    return (adc - 512.0) / 512.0
+    # return (adc - 512.0) / 512.0
+    return (adc - 2048.0) / 2048.0
 
 
 def predict_from_signal(signal: np.ndarray, threshold: float = THRESHOLD) -> dict:
@@ -140,11 +141,11 @@ def predict_from_csv(path: str, threshold: float = THRESHOLD) -> dict:
 
 
 def predict_from_raw_adc(adc_values: list, threshold: float = THRESHOLD) -> dict:
-    """
-    Run prediction on a list of raw ADC integer values (0-1023, as sent by ESP32).
-    Normalises to [-1, 1] before inference (matches training load_signal()).
-    """
+    """Run prediction on a list of raw ADC integer values (0-4095, 12-bit ESP32 ADC)."""
+    '''Normalises to [-1, 1] before inference (matches training load_signal()).'''
+
     adc    = np.array(adc_values, dtype=np.float32)
     adc    = np.nan_to_num(adc)
-    signal = (adc - 512.0) / 512.0
+    #signal = (adc - 512.0) / 512.0
+    signal = (adc - 2048.0) / 2048.0
     return predict_from_signal(signal, threshold=threshold)
