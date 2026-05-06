@@ -1,7 +1,29 @@
 .event-table-wrap {
   overflow-x: auto;
+  overflow-y: auto;
+  max-height: 400px;
   border-radius: 8px;
   border: 1px solid var(--border);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(15, 23, 42, 0.85) transparent;
+}
+
+.event-table-wrap::-webkit-scrollbar {
+  width: 6px;
+}
+
+.event-table-wrap::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 0 8px 8px 0;
+}
+
+.event-table-wrap::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.85);
+  border-radius: 3px;
+}
+
+.event-table-wrap::-webkit-scrollbar-thumb:hover {
+  background: #0f172a;
 }
 
 .event-table {
@@ -18,9 +40,13 @@
 }
 
 .event-table th {
-  background: var(--bg-dark);
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
   color: var(--text-muted);
   font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .event-table tbody tr:hover {
