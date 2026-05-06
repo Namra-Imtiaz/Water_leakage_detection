@@ -1,5 +1,16 @@
 import './EventTable.css'
 
+function formatTimestamp(ts) {
+  if (!ts) return '—'
+  // ts format from backend: "2026-05-06 17:30"
+  const [datePart, timePart] = ts.split(' ')
+  if (!timePart) return ts
+  const [h, m] = timePart.split(':').map(Number)
+  const ampm = h >= 12 ? 'PM' : 'AM'
+  const hour12 = h % 12 || 12
+  return `${datePart} ${String(hour12).padStart(2, '0')}:${String(m).padStart(2, '0')} ${ampm}`
+}
+
 export default function EventTable({ events }) {
   if (!events?.length) {
     return <p className="event-table-empty">No events yet. Start the dummy sender or connect ESP32.</p>
@@ -24,7 +35,7 @@ export default function EventTable({ events }) {
                 </span>
               </td>
               <td>{Math.round(e.confidence * 100)}%</td>
-              <td>{e.timestamp}</td>
+              <td>{formatTimestamp(e.timestamp)}</td>
             </tr>
           ))}
         </tbody>
