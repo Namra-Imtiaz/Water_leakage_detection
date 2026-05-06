@@ -5,7 +5,9 @@ POST /api/predict  — accepts raw ADC samples, runs ML inference, stores result
 POST /api/leak-data — legacy: accepts pre-computed predictions (ESP32 / dummy sender).
 """
 
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
+
+PKT = timezone(timedelta(hours=5))
 from flask import Blueprint, request, jsonify
 from models.db import get_connection
 from ml_model.predictor import predict_from_raw_adc
@@ -49,7 +51,7 @@ def predict():
 
     sensor_id  = int(data["sensor_id"])
     adc_values = data["adc_values"]
-    timestamp  = data.get("timestamp") or datetime.now().strftime("%Y-%m-%d %H:%M")
+    timestamp  = data.get("timestamp") or datetime.now(PKT).strftime("%Y-%m-%d %H:%M")
     threshold  = float(data.get("threshold", 0.5))
 
     if len(adc_values) < 8000:
@@ -115,7 +117,7 @@ def receive_leak_data():
         return jsonify({"error": "Request body must be JSON"}), 400
 
     # Validate required fields (single sensor; leak vs no leak only, no pipe sections)
-    required = ["sensor_id", "leak_status", "confidence", "timestamp"]
+    required = ["sensor_id", "leak_status", "confidence"]
     for field in required:
         if field not in data:
             return jsonify({"error": f"Missing field: {field}"}), 400
@@ -123,7 +125,7 @@ def receive_leak_data():
     sensor_id = int(data["sensor_id"])
     leak_status = data["leak_status"]
     confidence = float(data["confidence"])
-    timestamp = data["timestamp"]
+    timestamp = data.get("timestamp") or datetime.now(PKT).strftime("%Y-%m-%d %H:%M")
 
     if leak_status not in ("Leak", "No Leak"):
         return jsonify({"error": "leak_status must be 'Leak' or 'No Leak'"}), 400
